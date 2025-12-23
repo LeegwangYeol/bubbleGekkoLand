@@ -4,7 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
+             d:DesignHeight="600" d:DesignWidth="600"
+             Loaded="HoneycombControl_Loaded">
     <UserControl.Resources>
         <!-- 원형 버튼 스타일 -->
         <Style x:Key="CircularButtonStyle" TargetType="Button">
@@ -23,35 +24,14 @@
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
-            <!-- RenderTransform을 설정하여 애니메이션이 적용될 수 있도록 함 -->
+            <!-- RenderTransform을 설정하여 크기 변경이 적용될 수 있도록 함 -->
             <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
             <Setter Property="RenderTransform">
                 <Setter.Value>
-                    <ScaleTransform ScaleX="1" ScaleY="1" />
+                    <!-- ScaleX와 ScaleY를 모델의 Scale 속성에 바인딩 -->
+                    <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}" />
                 </Setter.Value>
             </Setter>
-            <Style.Triggers>
-                <!-- 마우스가 버튼 위에 올라갔을 때의 트리거 -->
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Trigger.EnterActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.2" Duration="0:0:0.1"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.2" Duration="0:0:0.1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.EnterActions>
-                    <!-- 마우스가 버튼을 벗어났을 때의 트리거 -->
-                    <Trigger.ExitActions>
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleX" To="1.0" Duration="0:0:0.1"/>
-                                <DoubleAnimation Storyboard.TargetProperty="RenderTransform.ScaleY" To="1.0" Duration="0:0:0.1"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </Trigger.ExitActions>
-                </Trigger>
-            </Style.Triggers>
         </Style>
     </UserControl.Resources>
     
