@@ -47,7 +47,7 @@ namespace adviser.component
             if (count <= 0) return;
 
             double buttonSize = 80;
-            double gap = 10;
+            double gap = -20;
             double centerX = 300; // Center of the canvas
             double centerY = 300;
 

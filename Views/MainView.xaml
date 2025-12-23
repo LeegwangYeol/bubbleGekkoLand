@@ -12,7 +12,7 @@
         <vm:MainViewModel/>
     </Window.DataContext>
     <Grid>
-        <components:HoneycombControl ButtonCount="19"
+        <components:HoneycombControl ButtonCount="37"
                                      HorizontalAlignment="Center" 
                                      VerticalAlignment="Center"/>
     </Grid>
