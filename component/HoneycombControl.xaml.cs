@@ -96,6 +96,10 @@ namespace adviser.component
 
         private void GenerateHoneycombButtons(int count)
         {
+            if (Buttons == null)
+            {
+                Buttons = new ObservableCollection<HoneybunButtonModel>();
+            }
             Buttons.Clear();
             if (count <= 0) return;
 
