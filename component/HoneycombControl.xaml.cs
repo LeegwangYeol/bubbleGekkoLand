@@ -23,8 +23,8 @@ namespace adviser.component
 
         public HoneycombControl()
         {
-            InitializeComponent();
             Buttons = new ObservableCollection<HoneybunButtonModel>();
+            InitializeComponent();
             this.DataContext = this;
         }
         
