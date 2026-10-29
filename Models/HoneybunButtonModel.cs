@@ -4,8 +4,19 @@ namespace adviser.Models
 {
     public class HoneybunButtonModel : ObservableObject
     {
-        public int Q { get; set; } // Axial coordinate
-        public int R { get; set; } // Axial coordinate
+        private int _q;
+        public int Q
+        {
+            get => _q;
+            set => SetProperty(ref _q, value);
+        } // Axial coordinate
+
+        private int _r;
+        public int R
+        {
+            get => _r;
+            set => SetProperty(ref _r, value);
+        } // Axial coordinate
 
         private double _x;
         public double X
