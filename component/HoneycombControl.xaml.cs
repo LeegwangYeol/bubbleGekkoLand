@@ -96,6 +96,7 @@ namespace adviser.component
 
         private void GenerateHoneycombButtons(int count)
         {
+            if (Buttons == null) return;
             Buttons.Clear();
             if (count <= 0) return;
 
