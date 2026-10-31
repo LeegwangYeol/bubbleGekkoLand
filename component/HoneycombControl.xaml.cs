@@ -90,6 +90,8 @@ namespace adviser.component
         {
             if (d is HoneycombControl control)
             {
+                if (control.Buttons == null)
+                    control.Buttons = new ObservableCollection<HoneybunButtonModel>();
                 control.GenerateHoneycombButtons((int)e.NewValue);
             }
         }
@@ -151,6 +153,8 @@ namespace adviser.component
         
         private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
         {
+            if (parent == null) return null;
+
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
