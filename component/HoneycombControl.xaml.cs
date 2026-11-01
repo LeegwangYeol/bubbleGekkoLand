@@ -10,7 +10,7 @@ namespace adviser.component
 {
     public partial class HoneycombControl : UserControl
     {
-        public ObservableCollection<HoneybunButtonModel> Buttons { get; set; }
+        public ObservableCollection<HoneybunButtonModel> Buttons { get; set; } = new ObservableCollection<HoneybunButtonModel>();
 
         public static readonly DependencyProperty ButtonCountProperty =
             DependencyProperty.Register("ButtonCount", typeof(int), typeof(HoneycombControl), new PropertyMetadata(0, OnButtonCountChanged));
@@ -24,7 +24,6 @@ namespace adviser.component
         public HoneycombControl()
         {
             InitializeComponent();
-            Buttons = new ObservableCollection<HoneybunButtonModel>();
             this.DataContext = this;
         }
         
@@ -96,6 +95,7 @@ namespace adviser.component
 
         private void GenerateHoneycombButtons(int count)
         {
+            if (Buttons == null) Buttons = new ObservableCollection<HoneybunButtonModel>();
             Buttons.Clear();
             if (count <= 0) return;
 
