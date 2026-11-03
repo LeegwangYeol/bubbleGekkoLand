@@ -36,10 +36,14 @@ namespace adviser.component
             
             // Applying the template is what creates the panel.
             itemsPresenter.ApplyTemplate();
+
+            if (VisualTreeHelper.GetChildrenCount(itemsPresenter) == 0) return;
             var canvas = VisualTreeHelper.GetChild(itemsPresenter, 0) as Panel;
 
             if (canvas != null)
             {
+                canvas.MouseMove -= Canvas_MouseMove;
+                canvas.MouseLeave -= Canvas_MouseLeave;
                 canvas.MouseMove += Canvas_MouseMove;
                 canvas.MouseLeave += Canvas_MouseLeave;
             }
