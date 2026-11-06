@@ -36,6 +36,8 @@ namespace adviser.component
             
             // Applying the template is what creates the panel.
             itemsPresenter.ApplyTemplate();
+
+            if (VisualTreeHelper.GetChildrenCount(itemsPresenter) == 0) return;
             var canvas = VisualTreeHelper.GetChild(itemsPresenter, 0) as Panel;
 
             if (canvas != null)
@@ -88,14 +90,18 @@ namespace adviser.component
 
         private static void OnButtonCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is HoneycombControl control)
+            if (d is HoneycombControl control && e.NewValue is int newCount)
             {
-                control.GenerateHoneycombButtons((int)e.NewValue);
+                control.GenerateHoneycombButtons(newCount);
             }
         }
 
         private void GenerateHoneycombButtons(int count)
         {
+            if (Buttons == null)
+            {
+                Buttons = new ObservableCollection<HoneybunButtonModel>();
+            }
             Buttons.Clear();
             if (count <= 0) return;
 
@@ -151,6 +157,8 @@ namespace adviser.component
         
         private static T FindVisualChild<T>(DependencyObject parent) where T : DependencyObject
         {
+            if (parent == null) return null;
+
             for (int i = 0; i < VisualTreeHelper.GetChildrenCount(parent); i++)
             {
                 DependencyObject child = VisualTreeHelper.GetChild(parent, i);
