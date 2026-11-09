@@ -10,7 +10,7 @@ namespace adviser.component
 {
     public partial class HoneycombControl : UserControl
     {
-        public ObservableCollection<HoneybunButtonModel> Buttons { get; set; }
+        public ObservableCollection<HoneybunButtonModel> Buttons { get; set; } = new ObservableCollection<HoneybunButtonModel>();
 
         public static readonly DependencyProperty ButtonCountProperty =
             DependencyProperty.Register("ButtonCount", typeof(int), typeof(HoneycombControl), new PropertyMetadata(0, OnButtonCountChanged));
@@ -24,7 +24,6 @@ namespace adviser.component
         public HoneycombControl()
         {
             InitializeComponent();
-            Buttons = new ObservableCollection<HoneybunButtonModel>();
             this.DataContext = this;
         }
         
@@ -36,7 +35,11 @@ namespace adviser.component
             
             // Applying the template is what creates the panel.
             itemsPresenter.ApplyTemplate();
-            var canvas = VisualTreeHelper.GetChild(itemsPresenter, 0) as Panel;
+            Panel canvas = null;
+            if (VisualTreeHelper.GetChildrenCount(itemsPresenter) > 0)
+            {
+                canvas = VisualTreeHelper.GetChild(itemsPresenter, 0) as Panel;
+            }
 
             if (canvas != null)
             {
@@ -88,9 +91,9 @@ namespace adviser.component
 
         private static void OnButtonCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is HoneycombControl control)
+            if (d is HoneycombControl control && e.NewValue is int count)
             {
-                control.GenerateHoneycombButtons((int)e.NewValue);
+                control.GenerateHoneycombButtons(count);
             }
         }
 
