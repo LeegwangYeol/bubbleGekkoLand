@@ -23,8 +23,8 @@ namespace adviser.component
 
         public HoneycombControl()
         {
-            InitializeComponent();
             Buttons = new ObservableCollection<HoneybunButtonModel>();
+            InitializeComponent();
             this.DataContext = this;
         }
         
@@ -40,6 +40,8 @@ namespace adviser.component
 
             if (canvas != null)
             {
+                canvas.MouseMove -= Canvas_MouseMove;
+                canvas.MouseLeave -= Canvas_MouseLeave;
                 canvas.MouseMove += Canvas_MouseMove;
                 canvas.MouseLeave += Canvas_MouseLeave;
             }
