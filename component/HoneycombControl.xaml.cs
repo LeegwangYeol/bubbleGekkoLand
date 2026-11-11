@@ -23,8 +23,8 @@ namespace adviser.component
 
         public HoneycombControl()
         {
-            InitializeComponent();
             Buttons = new ObservableCollection<HoneybunButtonModel>();
+            InitializeComponent();
             this.DataContext = this;
         }
         
@@ -88,9 +88,9 @@ namespace adviser.component
 
         private static void OnButtonCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is HoneycombControl control)
+            if (d is HoneycombControl control && e.NewValue is int count)
             {
-                control.GenerateHoneycombButtons((int)e.NewValue);
+                control.GenerateHoneycombButtons(count);
             }
         }
 
