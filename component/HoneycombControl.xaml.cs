@@ -88,14 +88,15 @@ namespace adviser.component
 
         private static void OnButtonCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is HoneycombControl control)
+            if (d is HoneycombControl control && e.NewValue is int count)
             {
-                control.GenerateHoneycombButtons((int)e.NewValue);
+                control.GenerateHoneycombButtons(count);
             }
         }
 
         private void GenerateHoneycombButtons(int count)
         {
+            if (Buttons == null) return;
             Buttons.Clear();
             if (count <= 0) return;
 
